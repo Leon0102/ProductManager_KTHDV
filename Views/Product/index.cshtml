@@ -1,0 +1,51 @@
+@model List<Product>
+
+@{
+    ViewData["Title"] = "Home Page";
+    var products = Model;
+    @* var categories = ViewBag.Categories; *@
+    @* var categories = ViewData["Categories"] as List<string>; *@
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome Product Manager</h1>
+    @* <ul class="list-group">
+        @foreach (var category in categories)
+        {
+        <li class="list-group-item">
+        <a asp-action="Details">@category</a>
+        </li>
+        }
+        </ul> *@
+    <table class="table table-striped table-bordered table-hover">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Price</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Action</th>
+                <th>
+                    <a href="/Product/Create" class="btn btn-primary">Create</a>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var product in products)
+            {
+                <tr>
+                    <th scope="row">@product.Id</th>
+                    <td>@product.Name</td>
+                    <td>@product.Price</td>
+                    <td>@product.Quantity</td>
+                    <td>
+                        @product.Description
+                    </td>
+                    <td>
+                        <a asp-action="Edit" class="btn btn-success" asp-route-id="@product.Id">Edit</a> |
+                        <a asp-action="Delete" class="btn btn-danger" asp-route-id="@product.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+</div>
